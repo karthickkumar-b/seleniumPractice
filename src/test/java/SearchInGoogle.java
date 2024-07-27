@@ -5,6 +5,8 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 
+import java.beans.IntrospectionException;
+
 public class SearchInGoogle {
 
     WebDriver webDriver;
@@ -20,6 +22,16 @@ public class SearchInGoogle {
         Thread.sleep(1000);
         WebElement webElement = webDriver.findElement(By.id("APjFqb"));
         webElement.sendKeys("flipkart.com");
+        webElement.sendKeys(Keys.RETURN);
+        Thread.sleep(2000);
+        webElement = webDriver.findElement(By.cssSelector("h3"));
+        webElement.click();
+    }
+
+    public void searchAirpods() throws InterruptedException {
+        Thread.sleep(1000);
+        WebElement webElement = webDriver.findElement(By.name("q"));
+        webElement.sendKeys("Airpods");
         webElement.sendKeys(Keys.ENTER);
     }
 
@@ -28,5 +40,7 @@ public class SearchInGoogle {
         searchInGoogle.launchBrowser();
         Thread.sleep(1000);
         searchInGoogle.searchProduct();
+        Thread.sleep(1000);
+        searchInGoogle.searchAirpods();
     }
 }
